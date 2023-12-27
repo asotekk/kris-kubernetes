@@ -1,0 +1,14 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: whoami-pod
+  labels:
+    name: whoami
+    app: front-tier
+spec:
+  containers:
+    - image: containous/whoami
+      name: whoami-container
+      ports:
+        - containerPort: 80

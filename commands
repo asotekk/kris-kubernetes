@@ -1,0 +1,19 @@
+## container command to query api server and list of pods
+
+
+- /bin/sh -c
+
+SERVICEACCOUNT=/var/run/secrets/kubernetes.io/serviceaccount
+TOKEN=$(cat ${SERVICEACCOUNT}/token)
+while true
+do
+    echo "Querying Kubernetes API Server for Pods in default namespace..."
+
+    curl—cacert $SERVICEACCOUNT/ca.crt—header "Authorization: Bearer $TOKEN" \
+    -X GET https://kubernetes/api/v1/namespaces/default/pods
+    
+    sleep 10
+done
+
+### view log streams
+ kubectl logs <pod name>(9) -f

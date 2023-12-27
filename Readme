@@ -1,0 +1,15 @@
+ kubectl get Pods/multi-container-Pod -o jsonpath="{.items[*].spec.containers[*].name}"
+
+ kubectl exec Pods/multi-container-Pod --container nginx-container-1 -- ls
+ kubectl logs -f Pods/multi-container-Pods --container nginx-container
+
+ kubectl logs --tail=30 Pods/multi-container-Pods --container nginx-container
+
+ kubectl exec Pods/nginx-Pod-with-configmap -- env
+
+  kubectl rollout status deployment nginx-deployment-example
+  kubectl apply -f ./nginx-deployment-readinessprobe.yaml --record
+
+ kubectl -n default get secret $(kubectl -n default get sa/my-release-nginx-ingress -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+
+
